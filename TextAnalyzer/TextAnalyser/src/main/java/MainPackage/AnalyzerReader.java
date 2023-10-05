@@ -27,6 +27,9 @@ public class AnalyzerReader {
             String previousWord = null;
 
             while ((line = reader.readLine()) != null) {
+                // Remove unwanted characters such as punctuation, quotation marks, etc.
+                line = line.replaceAll("[^a-zA-Z ]", "");
+
                 // Tokenize the line into words
                 String[] words = line.toLowerCase().split("\\s+");
 
@@ -40,21 +43,20 @@ public class AnalyzerReader {
 
     private void processWords(Map<String, String> adjacencyList, String[] words, String previousWord) {
         for (String word : words) {
-            // Remove punctuation and accents from the word
-            word = normalizeWord(word);
-
-            if (previousWord != null) {
-                // Update the adjacency list to indicate the order of words
-                adjacencyList.putIfAbsent(previousWord, "");
-                String destinations = adjacencyList.get(previousWord);
-                if (!destinations.isEmpty()) {
-                    destinations += ", ";
+            if (!word.isEmpty()) { // Skip empty words
+                if (previousWord != null) {
+                    // Update the adjacency list to indicate the order of words
+                    adjacencyList.putIfAbsent(previousWord, "");
+                    String destinations = adjacencyList.get(previousWord);
+                    if (!destinations.isEmpty()) {
+                        destinations += ", ";
+                    }
+                    destinations += word;
+                    adjacencyList.put(previousWord, destinations);
                 }
-                destinations += word;
-                adjacencyList.put(previousWord, destinations);
-            }
 
-            previousWord = word;
+                previousWord = word;
+            }
         }
     }
 

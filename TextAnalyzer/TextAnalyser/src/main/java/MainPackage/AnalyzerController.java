@@ -26,21 +26,43 @@ public class AnalyzerController {
     public void processFiles() {
         AnalyzerReader reader = new AnalyzerReader();
         AnalyzerWriter writer = new AnalyzerWriter();
+        ArrayList<String> outputFiles = new ArrayList<>();
 
         for (String fileName : fileNames) {
             try {
                 // Read and process the file
                 Map<String, String> adjacencyList = reader.readFile(fileName);
-                System.out.println("Adjacency List for File: " + fileName);
-                for (Map.Entry<String, String> entry : adjacencyList.entrySet()) {
-                    System.out.println(entry.getKey() + ": " + entry.getValue());
-                }
+
+                // Construct the output file name based on the input file name
+                String outputFileName = getOutputFileName(fileName);
 
                 // Write the adjacency list to a CSV file in the same directory as the input file
-                writer.writeAdjacencyList(adjacencyList, fileName);
+                writer.writeAdjacencyList(adjacencyList, outputFileName);
+
+                // Store the name of the new output file
+                outputFiles.add(outputFileName);
             } catch (IOException e) {
                 System.err.println("Error processing file " + fileName + ": " + e.getMessage());
             }
         }
+
+        // Print the names of the new files created
+        System.out.println("New files created:");
+        for (String outputFile : outputFiles) {
+            System.out.println(outputFile);
+        }
+    }
+
+    /**
+     * Constructs the output file name based on the input file name.
+     *
+     * @param inputFileName The input file name.
+     * @return The output file name.
+     */
+    private String getOutputFileName(String inputFileName) {
+        // Extract the file name without extension
+        String baseName = inputFileName.substring(0, inputFileName.lastIndexOf('.'));
+        // Construct the output file name with a .csv extension
+        return baseName + ".csv";
     }
 }
