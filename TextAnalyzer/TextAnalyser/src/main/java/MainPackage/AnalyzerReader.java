@@ -1,13 +1,24 @@
 package MainPackage;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.Normalizer;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * The AnalyzerReader class handles reading and processing text files to generate adjacency lists.
+ */
 public class AnalyzerReader {
+
+    /**
+     * Reads and processes a text file to generate an adjacency list.
+     *
+     * @param fileName The name of the input text file.
+     * @return A Map representing the adjacency list.
+     * @throws IOException If an I/O error occurs while reading the file.
+     */
     public Map<String, String> readFile(String fileName) throws IOException {
         Map<String, String> adjacencyList = new TreeMap<>(); // TreeMap to maintain alphabetical order
 

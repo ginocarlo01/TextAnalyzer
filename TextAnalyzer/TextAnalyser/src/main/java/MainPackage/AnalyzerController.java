@@ -1,22 +1,42 @@
 package MainPackage;
-import java.util.Arrays;
-import java.util.List;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
+/**
+ * The AnalyzerController class orchestrates the processing of multiple text files.
+ * It is responsible for interacting with the AnalyzerReader and AnalyzerWriter.
+ */
 public class AnalyzerController {
-    ArrayList<String> nomesArquivos = new ArrayList<>();
+    private ArrayList<String> fileNames = new ArrayList<>();
 
-    public AnalyzerController(ArrayList<String> nomesArquivos){
-        this.nomesArquivos = nomesArquivos;
+    /**
+     * Constructs an AnalyzerController with a list of file names.
+     *
+     * @param fileNames A list of file names to process.
+     */
+    public AnalyzerController(ArrayList<String> fileNames) {
+        this.fileNames = fileNames;
     }
 
-    public void processarArquivos(){
-        //em loop
+    /**
+     * Processes the text files, including reading and generating adjacency lists.
+     */
+    public void processFiles() {
+        AnalyzerReader reader = new AnalyzerReader();
+        AnalyzerWriter writer = new AnalyzerWriter();
 
-        //formatar arquivo
+        for (String fileName : fileNames) {
+            try {
+                // Read and process the file
+                Map<String, String> adjacencyList = reader.readFile(fileName);
 
-        //processa arquivo
-
-        //escrever arquivo
+                // Process the adjacency list and write the results
+                //writer.writeAdjacencyList(adjacencyList, fileName + ".csv");
+            } catch (IOException e) {
+                System.err.println("Error processing file " + fileName + ": " + e.getMessage());
+            }
+        }
     }
 }
