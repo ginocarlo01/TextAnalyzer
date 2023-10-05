@@ -13,7 +13,7 @@ public class AnalyzerWriter {
     /**
      * Writes the adjacency list to a CSV file in the same directory as the input file.
      *
-     * @param adjacencyList The adjacency list to be written.
+     * @param adjacencyList The adjacency list to be written. Keys are nodes, and values are comma-separated destinations.
      * @param inputFilePath The path of the input file.
      * @throws IOException If an I/O error occurs while writing to the file.
      */
@@ -36,6 +36,9 @@ public class AnalyzerWriter {
             for (Map.Entry<String, String> entry : adjacencyList.entrySet()) {
                 String node = entry.getKey();
                 String destinations = entry.getValue();
+
+                // Replace colon (:) with a comma (,) as the delimiter
+                destinations = destinations.replace(":", ",");
 
                 // Write the node and its destinations to the CSV file
                 writer.write(node + ": " + destinations + "\n");
