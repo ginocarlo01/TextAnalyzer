@@ -7,6 +7,7 @@ import java.util.Map;
 /**
  * The AnalyzerController class orchestrates the processing of multiple text files.
  * It is responsible for interacting with the AnalyzerReader and AnalyzerWriter.
+ * This program is developed by Pedro Henrique - 260871
  */
 public class AnalyzerController {
     private ArrayList<String> fileNames = new ArrayList<>();
