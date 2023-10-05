@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * The AnalyzerWriter class handles writing the adjacency list to a CSV file.
@@ -37,11 +38,11 @@ public class AnalyzerWriter {
                 String node = entry.getKey();
                 String destinations = entry.getValue();
 
-                // Replace colon (:) with a comma (,) as the delimiter
-                destinations = destinations.replace(":", ",");
+                // Replace colons with commas
+                destinations = destinations.replaceAll(":", ",");
 
                 // Write the node and its destinations to the CSV file
-                writer.write(node + ": " + destinations + "\n");
+                writer.write(node + ", " + destinations + "\n");
             }
         }
     }
