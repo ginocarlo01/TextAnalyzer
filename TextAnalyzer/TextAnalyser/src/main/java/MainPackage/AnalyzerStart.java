@@ -7,7 +7,7 @@ import java.util.Map;
 
 /**
  * The TextAnalyzer program is designed to preprocess text files, generating adjacency lists for text analysis.
- * This program is developed by Gino Grippo.
+ * This program is developed by Gino Grippo - 248301
  */
 public class AnalyzerStart {
     public static void main(String[] args) {
