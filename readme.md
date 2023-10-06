@@ -18,6 +18,5 @@ Code files can be found on TextAnalyser\src\main\java\MainPackage
 
 <a name="colaboradores"></a>
 ## 👨‍💻 Team
-[Gino Carlo](https://ginocarlo01.itch.io/)
---> responsible for the Game Development and Level Design
+[Gino Carlo]
 
