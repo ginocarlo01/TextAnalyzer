@@ -16,6 +16,15 @@ Code files can be found on TextAnalyser\src\main\java\MainPackage
 -Each word appears only once as the starting word of a line, sorted alphabetically.
 -The list of destinations may consist of one or more words, without repetition in the same line.
 
+
+<a name="visao-geral"></a>
+## ✔️ Project Structure
+
+-AnalyzerStart: Entry point of the program, reads input file names (via args[]), creates a control object (passing validated files as parameters to its constructor), and handles general error handling.
+-AnalyzerController: Orchestrates the activities of other classes and handles exceptions.
+-AnalyzerReader: Reads and tokenizes an input file, loads a data structure representing the internally generated digraph from the text, and handles exceptions.
+-AnalyzerWriter: Writes the loaded digraph to an output file, and handles exceptions
+
 <a name="colaboradores"></a>
 ## 👨‍💻 Team
 [Gino Carlo](https://ginocarlo01.itch.io/)
